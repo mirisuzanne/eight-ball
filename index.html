@@ -3,12 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Demo of component-name Web Component" />
-    <title>component-name Web Component</title>
+    <meta name="description" content="Demo of eight-ball Web Component" />
+    <title>eight-ball Web Component</title>
 
-    <script type="module" src="component-name.js"></script>
+    <script type="module" src="eight-ball.js"></script>
 
     <style>
+      ex-ample {
+        display: block;
+        border: thin dotted gray;
+        border-radius: 3px;
+        padding: var(--gap);
+      }
+
+      eight-ball:defined :is(ol,ul) {
+        list-style: none;
+        padding: unset;
+      }
+
+      eight-ball::part(button) {
+        font: inherit;
+      }
+
       @layer reset, base;
 
       @layer base {
@@ -83,14 +99,21 @@
     </style>
   </head>
   <body>
-    <h1>&lt;component-name> Web Component</h1>
+    <h1>&lt;eight-ball> Web Component</h1>
+
+    <p>
+      A Web Component for
+      showing a random selection
+      from a group of options
+      (and allowing you to shake it up).
+    </p>
 
     <ul>
       <li>
-        <a href="https://github.com/mirisuzanne/component-name">Source on github</a>.
+        <a href="https://github.com/mirisuzanne/eight-ball">Source on github</a>.
       </li>
       <li>
-        <a href="https://www.npmjs.com/package/@terriblemia/component-name">Package on NPM</a>
+        <a href="https://www.npmjs.com/package/@terriblemia/eight-ball">Package on NPM</a>
       </li>
     </ul>
 
@@ -98,10 +121,144 @@
 
     <h2>General usage example</h2>
 
+    <p>Provide a list of elements to choose from:</p>
+
+    <ex-ample>
+      <eight-ball>
+        <span>It is certain</span>
+        <span hidden>It is decidedly so</span>
+        <span hidden>Without a doubt</span>
+        <span hidden>Yes definitely</span>
+        <span hidden>You may rely on it</span>
+
+        <span hidden>As I see it, yes</span>
+        <span hidden>Most likely</span>
+        <span hidden>Outlook good</span>
+        <span hidden>Yes</span>
+        <span hidden>Signs point to yes</span>
+
+        <span hidden>Reply hazy, try again</span>
+        <span hidden>Ask again later</span>
+        <span hidden>Better not tell you now</span>
+        <span hidden>Cannot predict now</span>
+        <span hidden>Concentrate and ask again</span>
+
+        <span hidden>Don't count on it</span>
+        <span hidden>My reply is no</span>
+        <span hidden>My sources say no</span>
+        <span hidden>Outlook not so good</span>
+        <span hidden>Very doubtful</span>
+      </eight-ball>
+    </ex-ample>
+
+    <p>
+      Optionally provide a button label
+      using the <code>data-action</code> attribute.
+    </p>
+
+    <ex-ample>
+      <eight-ball data-action="🎱 shake it">
+        <span>It is certain</span>
+        <span hidden>It is decidedly so</span>
+        <span hidden>Without a doubt</span>
+        <span hidden>Yes definitely</span>
+        <span hidden>You may rely on it</span>
+      </eight-ball>
+    </ex-ample>
+
+    <p>
+      Or provide a <code>button</code>
+      in the named <code>action</code> slot.
+      The <code>button</code> can be slotted directly,
+      or a descendent of the slotted element.
+    </p>
+
+    <ex-ample>
+      <eight-ball>
+        <span>It is certain</span>
+        <span hidden>It is decidedly so</span>
+        <span hidden>Without a doubt</span>
+        <span hidden>Yes definitely</span>
+        <span hidden>You may rely on it</span>
+        <button slot="action">🎱 really shake it</button>
+      </eight-ball>
+    </ex-ample>
+
+    <p>
+      Optionally force
+      the initial selection
+      by applying the <code>data-current</code>
+      attribute to one of the options.
+      The first option marked as current
+      will be selected initially.
+    </p>
+
+    <ex-ample>
+      <eight-ball>
+        <span>It is certain</span>
+        <span hidden>It is decidedly so</span>
+        <span hidden>Without a doubt</span>
+        <span hidden data-current>Yes definitely</span>
+        <span hidden>You may rely on it</span>
+      </eight-ball>
+    </ex-ample>
+
     <hr>
 
     <h2>Fallbacks & Extras</h2>
 
+    <p>
+      To get a single option fallback,
+      apply a <code>hidden</code> attribute
+      to all but one option in the list.
+      It's also best to hide anything
+      in the <code>action</code> slot,
+      since the it will have no effect.
+      The action will be unhidden when the element is defined.
+    </p>
 
+    <ex-ample>
+      <eight-ball->
+        <span>It is certain</span>
+        <span hidden>It is decidedly so</span>
+        <span hidden>Without a doubt</span>
+        <span hidden>Yes definitely</span>
+        <span hidden>You may rely on it</span>
+        <button slot="shake" hidden>my special action</button>
+      </eight-ball->
+    </ex-ample>
+
+    <p>
+      To see a list of all the options
+      as a fallback,
+      leave the <code>hidden</code> attribute off.
+      A list can also be provided
+      in the named <code>options</code> slot,
+      rather than putting individual options
+      in the default slot.
+    </p>
+
+    <ex-ample>
+      <eight-ball->
+        <ul slot="options">
+          <li>It is certain</li>
+          <li>It is decidedly so</li>
+          <li>Without a doubt</li>
+          <li>Yes definitely</li>
+          <li>You may rely on it</li>
+        </ul>
+        <div slot="shake" hidden><button>shake now</button></div>
+      </eight-ball->
+    </ex-ample>
+
+    <p>
+      We can use CSS to remove the list styles
+      once the element is defined:
+    </p>
+
+    <style demo-style>eight-ball:defined :is(ol,ul) {
+  list-style: none;
+  padding: unset;
+}</style>
   </body>
 </html>
