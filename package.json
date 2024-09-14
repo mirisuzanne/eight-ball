@@ -1,6 +1,6 @@
 {
   "name": "@terriblemia/eight-ball",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Web Component for showing a random selection from a group of options",
   "main": "eight-ball.js",
   "scripts": {

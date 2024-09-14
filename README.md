@@ -58,7 +58,7 @@ Make sure you include the `<script>` in your project
 <!-- 3rd party CDN, not recommended for production use -->
 <script
   type="module"
-  src="https://www.unpkg.com/@terriblemia/eight-ball@0.1.0/eight-ball.js"
+  src="https://www.unpkg.com/@terriblemia/eight-ball@0.2.0/eight-ball.js"
 ></script>
 ```
 
@@ -66,7 +66,7 @@ Make sure you include the `<script>` in your project
 <!-- 3rd party CDN, not recommended for production use -->
 <script
   type="module"
-  src="https://esm.sh/@terriblemia/eight-ball@0.1.0"
+  src="https://esm.sh/@terriblemia/eight-ball@0.2.0"
 ></script>
 ```
 
@@ -99,6 +99,8 @@ module.exports = function (eleventyConfig) {
 - Optionally set `data-current`
   on one of the options
   to enforce an initial state
+- Optionally add the (boolean) `view-transition` attribute
+  to transition between values in supporting browsers.
 
 ## Slots
 

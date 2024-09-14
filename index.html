@@ -153,11 +153,13 @@
 
     <p>
       Optionally provide a button label
-      using the <code>data-action</code> attribute.
+      using the (string) <code>data-action</code> attribute.
+      Or trigger a view transition in supporting browsers,
+      with the (boolean) <code>view-transition</code> attribute.
     </p>
 
     <ex-ample>
-      <eight-ball data-action="🎱 shake it">
+      <eight-ball data-action="🎱 shake it" view-transition>
         <span>It is certain</span>
         <span hidden>It is decidedly so</span>
         <span hidden>Without a doubt</span>

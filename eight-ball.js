@@ -104,7 +104,16 @@ class EightBall extends HTMLElement {
     this.#shakeButton.removeEventListener('click', this.shake);
   }
 
-  shake = () => this.current = this.#randomFrom(this.onDeck);
+  shake = () => {
+    if (!document.startViewTransition || !this.hasAttribute('view-transition')) {
+      this.#setRandom();
+      return;
+    }
+
+    document.startViewTransition(() => this.#setRandom());
+  }
+
+  #setRandom = () => this.current = this.#randomFrom(this.onDeck);
 
   #randomFrom = (array) => {
     return array.at(Math.floor(Math.random() * array.length));
